@@ -3,23 +3,16 @@
 import rospy
 from std_msgs.msg import String
 
-def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + " I heard %s", data.data)
 
-    rate = rospy.Rate(10)  # 10 Hz
+def listener():
+    rospy.init_node('listener', anonymous=True)
 
-    while not rospy.is_shutdown():
-        hello_str = "hello world"
+    rospy.Subscriber("chatter", String, callback)
 
-        rospy.loginfo(hello_str)
-        pub.publish(hello_str)
-
-        rate.sleep()
+    rospy.spin()
 
 
 if __name__ == '__main__':
-    try:
-        talker()
-    except rospy.ROSInterruptException:
-        pass
+    listener()
