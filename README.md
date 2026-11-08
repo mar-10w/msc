@@ -106,6 +106,21 @@ source devel/setup.bash
 rosrun talkandclient listener.py
 ```
 
+<!-- ============================================================
+     EXPERIMENT 3
+     STARTING WITH TURTLEISM
+     ============================================================ -->
+     ###Terminal 1 – Start ROS Master
+     roscore  
+     #Terminal 2 – Start Turtlesim
+     rosrun turtlesim turtlesim_node 
+     Terminal 3 – Keyboard Control
+     rosrun turtlesim turtle_teleop_key
+     #terminal 4 6. Publish Velocity Commands
+     
+     rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+
+
 ---
 
 <!-- ============================================================
@@ -196,103 +211,6 @@ rosrun spawn follow.py
 
 ---
 
-<!-- ============================================================
-     EXPERIMENT 5
-     PATH PLANNING AND RVIZ
-     ============================================================ -->
-
-# Experiment 5 — Path Planning and RViz
-
-## Workspace Preparation
-
-```bash
-# Create planning workspace
-mkdir path
-
-# Create source directory
-mkdir ~/path/src
-
-# Enter workspace
-cd path
-
-# Initialize catkin
-catkin_make
-
-# Source environment
-source devel/setup.bash
-```
-
-## Package Creation
-
-```bash
-cd src
-
-# Create planning package
-catkin_create_pkg planning rospy visualization_msg geometry_msgs std_msgs
-```
-
-## Python Planning Node
-
-```bash
-cd ~/path/src/planning
-
-# Create script directory
-mkdir scripts
-cd scripts
-
-# Create planning program
-gedit pp.py
-```
-
-## Main Python Imports
-
-```python
-#!/usr/bin/env python3
-
-import rospy
-import heapq
-
-from visualization_msgs.msg import Marker
-from geometry_msgs.msg import Point
-```
-
-## Build
-
-```bash
-# Set execution permission
-chmod +x pp.py
-
-# Return to workspace
-cd ~/path
-
-# Compile workspace
-catkin_make
-```
-
-## Runtime Terminals
-
-### Terminal 2 — ROS Master
-
-```bash
-roscore
-```
-
-### Terminal 3 — RViz
-
-```bash
-cd ~/path
-rviz
-```
-
-### Terminal 4 — Planning Node
-
-```bash
-cd ~/path
-source devel/setup.bash
-rosrun planning pp.py
-```
-
----
 
 <!-- ============================================================
      EXPERIMENT 6
