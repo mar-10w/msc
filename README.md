@@ -107,21 +107,27 @@ rosrun talkandclient listener.py
 ```
 
 <!-- ============================================================
-     EXPERIMENT 3
+ EXPERIMENT 3
      STARTING WITH TURTLEISM
      ============================================================ -->
-     ###Terminal 1 – Start ROS Master
-     roscore  
-     #Terminal 2 – Start Turtlesim
-     rosrun turtlesim turtlesim_node 
-     Terminal 3 – Keyboard Control
+### Terminal 1 – Start ROS Master
+```bash
+
+ roscore 
+``` 
+### Terminal 2 – Start Turtlesim
+```bash
+ rosrun turtlesim turtlesim_node 
+``` 
+### Terminal 3 – Keyboard Control
+```bash
      rosrun turtlesim turtle_teleop_key
-     #terminal 4 6. Publish Velocity Commands
+```
+### terminal 4 6. Publish Velocity Commands
+```bash
      
      rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
-
-
----
+```
 
 <!-- ============================================================
      EXPERIMENT 4
@@ -494,5 +500,25 @@ A typical ROS experiment uses the following order:
 
 # End of Laboratory Notes
 
+### Terminal 1 — ROS Master
+
+```bash
+roscore
+```
+
+### Terminal 2 — Talker
+
+```bash
+source /opt/ros/noetic/setup.bash
+rosrun rosserial_python serial_node.py /dev/ttyUSB0
+```
+
+### Terminal 3 — Listener Development
+
+```bash
+source /opt/ros/noetic/setup.bash
+rosrun echo /exp name 
+
+```
 
 
